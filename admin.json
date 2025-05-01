@@ -1,0 +1,36 @@
+{
+  "admin_settings": {
+    "site_title": "GeoCoin — Душа Грузии в металле",
+    "theme": "light",
+    "default_language": "ge",
+    "currency": "GEL"
+  },
+  "editors": [
+    {
+      "id": 1,
+      "name": "Администратор",
+      "email": "admin@geocoin.ge",
+      "role": "superadmin"
+    }
+  ],
+  "collections": {
+    "active_categories": [
+      "История",
+      "Вино",
+      "Святыни",
+      "Города"
+    ],
+    "regions": [
+      "Тбилиси",
+      "Кахетия"
+    ]
+  },
+  "automats": [
+    {
+      "location": "Тбилиси — Метехи",
+      "lat": 41.7151,
+      "lng": 44.8271,
+      "active": true
+    }
+  ]
+}
