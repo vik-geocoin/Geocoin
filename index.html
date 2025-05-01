@@ -1,12 +1,80 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GeoCoin — Душа Грузии</title>
+  <title>GeoCoin — Душа Грузии в металле</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <style>
+    body { margin:0; font-family:sans-serif; background:#f4f4f4; }
+    header, footer { background:#2b2b2b; color:#fff; padding:1rem; text-align:center; }
+    nav a { color:white; margin:0 1rem; text-decoration:none; }
+    .hero { background:#333; color:#fff; padding:2rem; text-align:center; }
+    .section { padding:2rem; background:white; margin:1rem auto; max-width:1000px; border-radius:8px; }
+    .cards-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+    .card { background:#fafafa; padding:1rem; border:1px solid #ddd; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    #mapid { height:400px; border-radius:8px; margin-top:1rem; }
+  </style>
 </head>
 <body>
-  <h1>Добро пожаловать в GeoCoin</h1>
-  <p>Ваш сайт успешно загружен. Здесь будет отображаться коллекция монет и карта.</p>
+  <header>
+    <h1>GeoCoin</h1>
+    <nav>
+      <a href="#about">О проекте</a>
+      <a href="#coins">Монеты</a>
+      <a href="#map">Карта</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Душа Грузии в металле</h2>
+    <p>Собери коллекцию культурных и исторических монет</p>
+  </div>
+
+  <section class="section" id="about">
+    <h2>О проекте</h2>
+    <p>GeoCoin — культурная коллекция памятных монет. Каждая монета отражает духовные, исторические или природные символы Грузии. Получить можно в специальных автоматах по всей стране.</p>
+  </section>
+
+  <section class="section" id="coins">
+    <h2>Монеты</h2>
+    <div class="cards-container" id="coinCards"></div>
+  </section>
+
+  <section class="section" id="map">
+    <h2>Где найти автоматы?</h2>
+    <div id="mapid"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 GeoCoin — Все права защищены
+  </footer>
+
+  <script>
+    const coins = [
+      {"title":"Святая Нино","description":"Крест из виноградной лозы — символ духовного рождения Грузии."},
+      {"title":"Царица Тамар","description":"Золотой век культуры и политики XII века."},
+      {"title":"Квеври","description":"Древняя винная традиция — символ грузинской земли."},
+      {"title":"Саперави","description":"Глубокое красное вино как кровь земли."},
+      {"title":"Гора Казбек","description":"Священная вершина и обитель легенд."}
+    ];
+    const container = document.getElementById('coinCards');
+    coins.forEach(coin => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<h3>${coin.title}</h3><p>${coin.description}</p>`;
+      container.appendChild(card);
+    });
+
+    var map = L.map('mapid').setView([41.7151, 44.8271], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    L.marker([41.7151, 44.8271]).addTo(map).bindPopup('Тбилиси — Метехи');
+    L.marker([41.8407, 44.7206]).addTo(map).bindPopup('Мцхета — Светицховели');
+    L.marker([41.65, 41.64]).addTo(map).bindPopup('Батуми — Площадь Европы');
+  </script>
 </body>
 </html>
