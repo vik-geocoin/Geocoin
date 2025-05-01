@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <style>
-    body { margin:0; font-family:sans-serif; background:#f4f4f4; }
-    header, footer { background:#2b2b2b; color:#fff; padding:1rem; text-align:center; }
-    nav a { color:white; margin:0 1rem; text-decoration:none; }
-    .hero { background:#333; color:#fff; padding:2rem; text-align:center; }
-    .section { padding:2rem; background:white; margin:1rem auto; max-width:1000px; border-radius:8px; }
-    .cards-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
-    .card { background:#fafafa; padding:1rem; border:1px solid #ddd; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    #mapid { height:400px; border-radius:8px; margin-top:1rem; }
+    body { font-family: sans-serif; background: #f4f4f4; margin: 0; }
+    header, footer { background: #2b2b2b; color: white; text-align: center; padding: 1rem; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; }
+    .hero { background: #333; color: white; padding: 2rem; text-align: center; }
+    .section { max-width: 1000px; margin: 2rem auto; padding: 1rem; background: white; border-radius: 8px; }
+    .cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .card { background: #fafafa; border: 1px solid #ccc; border-radius: 8px; padding: 1rem; }
+    #mapid { height: 400px; border-radius: 8px; margin-top: 1rem; }
   </style>
 </head>
 <body>
@@ -30,21 +30,31 @@
 
   <div class="hero">
     <h2>Душа Грузии в металле</h2>
-    <p>Собери коллекцию культурных и исторических монет</p>
+    <p>100 легендарных монет — в автоматах, в руках, в сердцах</p>
   </div>
 
   <section class="section" id="about">
     <h2>О проекте</h2>
-    <p>GeoCoin — культурная коллекция памятных монет. Каждая монета отражает духовные, исторические или природные символы Грузии. Получить можно в специальных автоматах по всей стране.</p>
+    <p>
+GeoCoin — это национальная коллекция памятных монет, воплощающая душу Грузии в металле. Проект соединяет технологии, культуру и туризм, превращая каждый символ страны в маленький артефакт с глубокой легендой. Монеты доступны в вендинговых автоматах по всей стране — в туристических зонах, культурных и религиозных центрах.
+
+Миссия GeoCoin — сохранить, передать и оживить грузинскую идентичность, объединив прошлое и будущее в коллекции, доступной каждому. Каждая монета несёт в себе смысл — от духовных символов (крест Святой Нино) до природных чудес (гора Казбек), от винных традиций (Квеври, Саперави) до достижений современности (Батуми, алфавит).
+
+Коллекция будет насчитывать 100 уникальных монет, разделённых по темам: история, природа, религия, архитектура, гастрономия, мифология, культура и туризм. Визуальный стиль поддерживает единый брендбук с элементами золотого цвета, грузинской орнаментики и современной типографики.
+
+Каждый автомат GeoCoin — это культурная точка. Пользователи могут сканировать QR-коды, сохранять коллекции в приложении, делиться достижениями и собирать физические альбомы.
+
+Сайт GeoCoin — это навигация по коллекции, карта автоматов, легенды монет, доступ к цифровым сервисам. В будущем возможна интеграция NFT и расширение на международные коллекции.
+</p>
   </section>
 
   <section class="section" id="coins">
-    <h2>Монеты</h2>
+    <h2>Примеры монет</h2>
     <div class="cards-container" id="coinCards"></div>
   </section>
 
   <section class="section" id="map">
-    <h2>Где найти автоматы?</h2>
+    <h2>Где находятся автоматы</h2>
     <div id="mapid"></div>
   </section>
 
@@ -54,27 +64,32 @@
 
   <script>
     const coins = [
-      {"title":"Святая Нино","description":"Крест из виноградной лозы — символ духовного рождения Грузии."},
-      {"title":"Царица Тамар","description":"Золотой век культуры и политики XII века."},
-      {"title":"Квеври","description":"Древняя винная традиция — символ грузинской земли."},
-      {"title":"Саперави","description":"Глубокое красное вино как кровь земли."},
-      {"title":"Гора Казбек","description":"Священная вершина и обитель легенд."}
+      { title: "Святая Нино", description: "Крест из лозы — символ христианства в Грузии." },
+      { title: "Царица Тамар", description: "Золотой век грузинского государства в XII веке." },
+      { title: "Квеври", description: "Глиняная амфора для вина — символ земли и корней." },
+      { title: "Саперави", description: "Знаменитое красное вино Грузии." },
+      { title: "Мцхета", description: "Древняя столица и духовное сердце страны." },
+      { title: "Светицховели", description: "Главный храм, место коронации и святыни." },
+      { title: "Гора Казбек", description: "Священная вершина Кавказа и легенд." },
+      { title: "Алфавит", description: "Уникальное письмо и гордость грузинского народа." },
+      { title: "Батуми", description: "Современность, архитектура и Чёрное море." },
+      { title: "Хванчкара", description: "Полусладкое вино и символ Рачи." }
     ];
-    const container = document.getElementById('coinCards');
+    const container = document.getElementById("coinCards");
     coins.forEach(coin => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `<h3>${coin.title}</h3><p>${coin.description}</p>`;
-      container.appendChild(card);
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `<h3>${coin.title}</h3><p>${coin.description}</p>`;
+      container.appendChild(div);
     });
 
-    var map = L.map('mapid').setView([41.7151, 44.8271], 7);
+    const map = L.map('mapid').setView([41.7151, 44.8271], 7);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
     }).addTo(map);
-    L.marker([41.7151, 44.8271]).addTo(map).bindPopup('Тбилиси — Метехи');
-    L.marker([41.8407, 44.7206]).addTo(map).bindPopup('Мцхета — Светицховели');
-    L.marker([41.65, 41.64]).addTo(map).bindPopup('Батуми — Площадь Европы');
+    L.marker([41.7151, 44.8271]).addTo(map).bindPopup("Тбилиси — Метехи");
+    L.marker([41.8407, 44.7206]).addTo(map).bindPopup("Мцхета — Светицховели");
+    L.marker([41.65, 41.64]).addTo(map).bindPopup("Батуми — Площадь Европы");
   </script>
 </body>
 </html>
